@@ -2,10 +2,12 @@ import React from "react";
 import Die from "./Die";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
+import Counter from "./Counter";
 
 export default function App() {
   const [dice, setDice] = React.useState(allNewDice());
   const [tenzies, setTenzies] = React.useState(false);
+  let [count, setCount] = React.useState(0)
 
   React.useEffect(() => {
     const allHeld = dice.every((die) => die.isHeld);
@@ -43,6 +45,7 @@ export default function App() {
       setTenzies(false);
       setDice(allNewDice());
     }
+    setCount(count = count +1)
   }
 
   function holdDice(id) {
@@ -70,9 +73,12 @@ export default function App() {
         current value between rolls.
       </p>
       <div className="dice-container">{diceElements}</div>
-      <button className="roll-dice" onClick={rollDice}>
-        {tenzies ? "New Game" : "Roll"}
-      </button>
+      <div className="button__flex">
+        <Counter count={count}/>
+        <button className="roll-dice" onClick={rollDice}>
+          {tenzies ? "New Game" : "Roll"}
+        </button>
+      </div>
     </main>
   );
 }
