@@ -41,11 +41,13 @@ export default function App() {
           return die.isHeld ? die : generateNewDie();
         })
       );
+      setCount(count = count +1)
     } else {
       setTenzies(false);
       setDice(allNewDice());
+      setCount(count = 0)
     }
-    setCount(count = count +1)
+    
   }
 
   function holdDice(id) {
